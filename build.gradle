@@ -50,4 +50,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.social/spring-social-web
     compile group: 'org.springframework.social', name: 'spring-social-web', version: '1.1.6.RELEASE'
 
+    // https://mvnrepository.com/artifact/commons-lang/commons-lang
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+
+
 }
