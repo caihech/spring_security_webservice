@@ -5,15 +5,15 @@ package com.framework.security.dto;
  */
 public class User {
 
-    public String useranme;
-    public String password;
+    private String username;
+    private String password;
 
-    public String getUseranme() {
-        return useranme;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUseranme(String useranme) {
-        this.useranme = useranme;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

@@ -43,11 +43,20 @@ public class UserControllerTest {
 
 
     @Test
-    public void whenQueryByUsernameSuccess() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/username")
-                .param("username","admin")
+    public void whenGetInfoSuccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("admin"));
+    }
+
+
+    @Test
+    public void whenGetInfoFailure() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/a")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+
     }
 
 }

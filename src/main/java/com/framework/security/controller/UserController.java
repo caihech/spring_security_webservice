@@ -1,10 +1,7 @@
 package com.framework.security.controller;
 
 import com.framework.security.dto.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +23,13 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(value = "/users/username", method = RequestMethod.GET)
-    public User queryByUsername(@RequestParam String username) {
+    // 添加正则表达式
+    @RequestMapping(value = "/users/{id:\\d+}", method = RequestMethod.GET)
+    public User getInfo(@PathVariable Integer id) {
         User user = null;
-        if (username.equals("admin")) {
+        if (id == 1) {
             user = new User();
-            user.setUseranme("admin");
+            user.setUsername("admin");
             user.setPassword("123456");
         }
         return user;
