@@ -25,25 +25,24 @@ public class UserController {
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
         }
-
         user.setId(1);
         return user;
     }
 
 
     @PutMapping(value = "/{id:\\d+}")
-    public User update(@Valid @RequestBody User user, BindingResult errors) {
-
+    public User update(@Valid @PathVariable Integer id, @RequestBody User user, BindingResult errors) {
+        System.out.println(id);
         if (errors.hasErrors()) {
-            errors.getAllErrors().stream().forEach(error -> {
-//                FieldError fieldError = (FieldError) error;
-//                String message = fieldError.getField() + error.getDefaultMessage();
-                System.out.println(error.getDefaultMessage());
-            });
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
         }
-
         user.setId(1);
         return user;
+    }
+
+    @DeleteMapping(value = "/{id:\\d+}")
+    public void delete(@PathVariable Integer id) {
+        System.out.println(id);
     }
 
 

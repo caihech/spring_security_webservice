@@ -87,7 +87,7 @@ public class UserControllerTest {
     public void whenUpdateSuccess() throws Exception {
 
         Date date = new Date();
-        String content = "{\"id\":1,\"username\":null,\"password\":\"123456\",\"brithday\":"+date.getTime()+"}";
+        String content = "{\"id\":1,\"username\":null,\"password\":\"123456\",\"brithday\":" + date.getTime() + "}";
         String result = mockMvc.perform(MockMvcRequestBuilders.put("/users/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8).content(content))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -95,6 +95,13 @@ public class UserControllerTest {
                 .andReturn().getResponse().getContentAsString();
 
         System.out.println(result);
+    }
+
+    @Test
+    public void whenDeleteSuccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/users/1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 
