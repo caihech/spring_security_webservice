@@ -2,6 +2,7 @@ package com.framework.security.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -17,6 +18,9 @@ public class User {
 
 
     private Integer id;
+
+    //不能为空
+    @NotBlank
     private String username;
     private String password;
     private Date brithday;
