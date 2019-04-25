@@ -17,11 +17,10 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/versions")
+@RequestMapping("/version")
 public class VersionController {
 
-//    @RequestMapping(value = {""}, method = RequestMethod.GET)
-    @GetMapping()
+    @RequestMapping(value = {""}, method = RequestMethod.GET)
     public Map getVersions() {
         Map<String, String> versionMap = new HashMap<>(16);
         versionMap.put("name", PropertiesUtils.getProperty("name"));
