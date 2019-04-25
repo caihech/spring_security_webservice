@@ -11,10 +11,11 @@ import java.util.List;
  * Created by caihe on 2019/4/25.
  */
 @RestController
+@RequestMapping(value = "/users")
 public class UserController {
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @GetMapping
     @JsonView(User.UserSimpleView.class)
     public List<User> query() {
 
@@ -25,7 +26,7 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(value = "/users/{id:\\d+}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable Integer id) {
         User user = null;
