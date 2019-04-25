@@ -3,6 +3,7 @@ package com.framework.security.controller;
 import com.framework.security.utils.PropertiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,8 @@ import java.util.Map;
 @RequestMapping("/versions")
 public class VersionController {
 
-    @RequestMapping(value = {""}, method = RequestMethod.GET)
+//    @RequestMapping(value = {""}, method = RequestMethod.GET)
+    @GetMapping()
     public Map getVersions() {
         Map<String, String> versionMap = new HashMap<>(16);
         versionMap.put("name", PropertiesUtils.getProperty("name"));
