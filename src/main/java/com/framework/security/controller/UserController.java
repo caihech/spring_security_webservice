@@ -3,6 +3,7 @@ package com.framework.security.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.framework.security.dto.User;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,7 +19,12 @@ public class UserController {
 
     @PostMapping
     @JsonView(User.UserSimpleView.class)
-    public User create(@Valid @RequestBody User user) {
+    public User create(@Valid @RequestBody User user, BindingResult errors) {
+
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
+
         user.setId(1);
         return user;
     }
