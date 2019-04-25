@@ -64,4 +64,15 @@ public class UserControllerTest {
 
     }
 
+
+    @Test
+    public void whenCreateSuccess() throws Exception {
+        String content = "{\"username\":\"admin\",\"password\":\"123456\"}";
+        mockMvc.perform(MockMvcRequestBuilders.post("/users")
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(content))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+    }
+
+
 }

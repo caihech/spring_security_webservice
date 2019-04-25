@@ -14,6 +14,13 @@ import java.util.List;
 @RequestMapping(value = "/users")
 public class UserController {
 
+    @PostMapping
+    @JsonView(User.UserSimpleView.class)
+    public User create(@RequestBody User user) {
+        user.setId(1);
+        return user;
+    }
+
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
@@ -37,4 +44,6 @@ public class UserController {
         }
         return user;
     }
+
+
 }

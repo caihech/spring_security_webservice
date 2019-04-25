@@ -14,8 +14,19 @@ public class User {
     }
 
 
+    private Integer id;
     private String username;
     private String password;
+
+
+    @JsonView(UserSimpleView.class)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @JsonView(UserSimpleView.class)
     public String getUsername() {
@@ -33,5 +44,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
