@@ -35,24 +35,29 @@ public class UserControllerTest {
 
     @Test
     public void whenQuerySuccess() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users")
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/users")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3))
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
     }
 
 
     @Test
     public void whenGetInfoSuccess() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/1")
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/users/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("admin"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("admin"))
+                .andReturn().getResponse().getContentAsString();
+
+        System.out.println(result);
     }
 
 
     @Test
-    public void whenGetInfoFailure() throws Exception{
+    public void whenGetInfoFailure() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/a")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError());
