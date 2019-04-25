@@ -3,6 +3,7 @@ package com.framework.security.dto;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 /**
@@ -19,10 +20,10 @@ public class User {
 
     private Integer id;
 
-    //不能为空
-    @NotBlank
+    @NotBlank(message = "用户名不能为空")
     private String username;
     private String password;
+    @Past(message = "生日必须是过期的时间")
     private Date brithday;
 
 
@@ -52,7 +53,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
     @JsonView(UserSimpleView.class)

@@ -13,6 +13,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -72,6 +74,21 @@ public class UserControllerTest {
         Date date = new Date();
         String content = "{\"username\":null,\"brithday\":" + date.getTime() + "}";
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/users")
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(content))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andReturn().getResponse().getContentAsString();
+
+        System.out.println(result);
+    }
+
+
+    @Test
+    public void whenUpdateSuccess() throws Exception {
+
+        Date date = new Date();
+        String content = "{\"id\":1,\"username\":null,\"password\":\"123456\",\"brithday\":"+date.getTime()+"}";
+        String result = mockMvc.perform(MockMvcRequestBuilders.put("/users/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8).content(content))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
